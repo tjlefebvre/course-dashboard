@@ -25,9 +25,7 @@ courses.forEach(course => {
             <span class="platform-tag">${course.platform}</span>
             <p>Status: ${course.status}</p>
             <a href="${course.link}" target="_blank">
-                <button style="cursor: pointer; background: #007bff; color: white; border: none; padding: 5px 10px; border-radius: 4px;">
-                    Go to Course
-                </button>
+                <button>Go to Course</button>
             </a>
         </div>
     `;
