@@ -1,40 +1,80 @@
-// 1. The Data
+// 1. The Data (Paste your new CLEAN JSON here later)
 const courses = [
     {
-        title: "Quilting for Beginners",
-        platform: "Craftsy",
-        status: "Not Started",
-        link: "https://www.craftsy.com"
+        "title": "The Essentials of Sketching Architecture",
+        "instructor": "Stephanie Bower",
+        "platform": "Craftsy",
+        "status": "Not Started",
+        "link": "https://www.craftsy.com/class/the-essentials-of-sketching-architecture",
+        "lessons": []
     },
     {
-        title: "Digital Illustration 101",
-        platform: "Domestika",
-        status: "In Progress",
-        link: "https://www.domestika.org"
+        "title": "Essential Techniques for Sketching the Energy of Places",
+        "instructor": "James Richards",
+        "platform": "Craftsy",
+        "status": "Not Started",
+        "link": "https://www.craftsy.com/class/essential-techniques-for-sketching-the-energy-of-places",
+        "lessons": []
     },
     {
-        title: "Advanced Woodworking",
-        platform: "Domestika",
-        status: "Completed",
-        link: "https://www.domestika.org"
+        "title": "Sketching the City in Pen, Ink & Watercolor",
+        "instructor": "Shari Blaukopf",
+        "platform": "Craftsy",
+        "status": "Not Started",
+        "link": "https://www.craftsy.com/class/sketching-the-city-in-pen-ink-watercolor",
+        "lessons": []
+    },
+    {
+        "title": "Perspective for Sketchers",
+        "instructor": "Stephanie Bower",
+        "platform": "Craftsy",
+        "status": "Not Started",
+        "link": "https://www.craftsy.com/class/perspective-for-sketchers",
+        "lessons": []
+    },
+    {
+        "title": "Travel Sketching in Mixed Media",
+        "instructor": "Marc Taro Holmes",
+        "platform": "Craftsy",
+        "status": "Not Started",
+        "link": "https://www.craftsy.com/class/travel-sketching-in-mixed-media",
+        "lessons": []
+    },
+    {
+        "title": "Sketching Landscapes in Pen, Ink & Watercolor",
+        "instructor": "Shari Blaukopf",
+        "platform": "Craftsy",
+        "status": "Not Started",
+        "link": "https://www.craftsy.com/class/sketching-landscapes-in-pen-ink-watercolor",
+        "lessons": []
+    },
+    {
+        "title": "Sketching People in Motion",
+        "instructor": "Marc Taro Holmes",
+        "platform": "Craftsy",
+        "status": "Not Started",
+        "link": "https://www.craftsy.com/class/sketching-people-in-motion",
+        "lessons": []
     }
 ];
 
-// 2. The Engine
 const container = document.getElementById('course-container');
 const searchInput = document.getElementById('search-input');
 
-// Function to display specific courses
 function displayCourses(courseList) {
-    container.innerHTML = ''; // Clear the container first
+    container.innerHTML = ''; 
     
     courseList.forEach(course => {
+        // Handle missing instructor for old data
+        const instructor = course.instructor ? course.instructor : "";
+        
         const card = `
             <div class="course-card">
                 <div class="course-info">
                     <h3>${course.title}</h3>
+                    <p style="color: #bbb; font-size: 0.9em; margin-bottom: 5px;">${instructor}</p>
                     <span class="platform-tag">${course.platform}</span>
-                    <p style="margin-top: 5px; color: #888; font-size: 0.9em;">Status: ${course.status}</p>
+                    <p style="margin-top: 5px; color: #888; font-size: 0.8em;">Status: ${course.status}</p>
                 </div>
                 <a href="${course.link}" target="_blank">
                     <button>Go to Course</button>
@@ -45,17 +85,4 @@ function displayCourses(courseList) {
     });
 }
 
-// 3. The Listener (Search Logic)
-searchInput.addEventListener('keyup', (e) => {
-    const searchString = e.target.value.toLowerCase();
-    
-    const filteredCourses = courses.filter(course => {
-        return course.title.toLowerCase().includes(searchString) || 
-               course.platform.toLowerCase().includes(searchString);
-    });
-    
-    displayCourses(filteredCourses);
-});
-
-// Initial load
-displayCourses(courses);
+// ... keep the search listener code the same ...
