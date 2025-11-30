@@ -86,3 +86,5 @@ function displayCourses(courseList) {
 }
 
 // ... keep the search listener code the same ...
+// Start the engine
+displayCourses(courses);
