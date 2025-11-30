@@ -6,7 +6,43 @@ const courses = [
         "platform": "Craftsy",
         "status": "Not Started",
         "link": "https://www.craftsy.com/class/the-essentials-of-sketching-architecture",
-        "lessons": []
+	[
+    {
+        "number": 1,
+        "title": "Class Preview (1:28)",
+        "link": "https://www.craftsy.com/class/the-essentials-of-sketching-architecture#description"
+    },
+    {
+        "number": 2,
+        "title": "How We See Buildings (21:37)",
+        "link": "https://www.craftsy.com/class/the-essentials-of-sketching-architecture#description"
+    },
+    {
+        "number": 3,
+        "title": "Architectural Elements (25:37)",
+        "link": "https://www.craftsy.com/class/the-essentials-of-sketching-architecture#description"
+    },
+    {
+        "number": 4,
+        "title": "Building Materials (28:21)",
+        "link": "https://www.craftsy.com/class/the-essentials-of-sketching-architecture#description"
+    },
+    {
+        "number": 5,
+        "title": "Sloping Surfaces (19:28)",
+        "link": "https://www.craftsy.com/class/the-essentials-of-sketching-architecture#description"
+    },
+    {
+        "number": 6,
+        "title": "Tips & Techniques (18:13)",
+        "link": "https://www.craftsy.com/class/the-essentials-of-sketching-architecture#description"
+    },
+    {
+        "number": 7,
+        "title": "Sketching Buildings on Location (22:27)",
+        "link": "https://www.craftsy.com/class/the-essentials-of-sketching-architecture#description"
+    }
+]
     },
     {
         "title": "Essential Techniques for Sketching the Energy of Places",
