@@ -6,7 +6,7 @@ const courses = [
         "platform": "Craftsy",
         "status": "Not Started",
         "link": "https://www.craftsy.com/class/the-essentials-of-sketching-architecture",
-	var "lessons" = [
+	"lessons": [
     {
         "number": 1,
         "title": "Class Preview (1:28)",
@@ -41,8 +41,8 @@ const courses = [
         "number": 7,
         "title": "Sketching Buildings on Location (22:27)",
         "link": "https://www.craftsy.com/class/the-essentials-of-sketching-architecture#description"
-    }
-]
+    },
+],
     },
     {
         "title": "Essential Techniques for Sketching the Energy of Places",
