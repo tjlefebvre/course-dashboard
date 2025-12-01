@@ -8,9 +8,12 @@ const courses = [
         "link": "https://www.craftsy.com/class/the-essentials-of-sketching-architecture",
 	"lessons": [
     {
-        "number": 1,
-        "title": "Class Preview (1:28)",
-        "link": "https://www.craftsy.com/class/the-essentials-of-sketching-architecture#description"
+{	
+	"number": 1,
+                "title": "Class Preview (1:28)",
+                "link": "https://www.craftsy.com/class/the-essentials-of-sketching-architecture",
+                "video": "https://manifest.prod.boltdns.net/manifest/v1/hls/v4/clear/6168786647001/9e7a3403-ea28-425f-9739-8c2d8ab228cf/10s/master.m3u8?fastly_token=NjkyZWVlYTBfMTA2NjMwM2E5YmFhNWUyNGMwZTYyZjg5NTg2YmEwZjkyYzA4OGI4NGRjYzExZGMwNDZiYzM1YzRjMDUzODFkYg%3D%3D"
+            },
     },
     {
         "number": 2,
@@ -352,13 +355,29 @@ function displayCourses(courseList) {
         
         if (course.lessons && course.lessons.length > 0) {
             lessonsHtml = '<ul style="list-style: none; padding: 0; margin: 0;">';
-            course.lessons.forEach(lesson => {
+		course.lessons.forEach(lesson => {
+                let content = '';
+                
+                // If we have a direct video stream, embed a player
+                if (lesson.video) {
+                    content = `
+                        <div style="margin-top: 5px;">
+                            <video controls style="width: 100%; border-radius: 4px; background: #000;">
+                                <source src="${lesson.video}" type="application/x-mpegURL">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                    `;
+                }
+                
                 lessonsHtml += `
-                    <li style="padding: 8px 10px; border-bottom: 1px solid #333; font-size: 0.9em;">
-                        <a href="${lesson.link}" target="_blank" style="color: #aaa; text-decoration: none; display: flex; justify-content: space-between;">
-                            <span>${lesson.number}. ${lesson.title}</span>
-                            <span>▶</span>
-                        </a>
+                    <li style="padding: 12px 10px; border-bottom: 1px solid #333; font-size: 0.9em;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: ${lesson.video ? '10px' : '0'};">
+                            <a href="${lesson.link}" target="_blank" style="color: #aaa; text-decoration: none;">
+                                <span>${lesson.number}. ${lesson.title}</span>
+                            </a>
+                        </div>
+                        ${content}
                     </li>
                 `;
             });
