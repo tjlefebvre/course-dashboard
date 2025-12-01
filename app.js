@@ -41,8 +41,8 @@ const courses = [
         "number": 7,
         "title": "Sketching Buildings on Location (22:27)",
         "link": "https://www.craftsy.com/class/the-essentials-of-sketching-architecture#description"
-    },
-],
+    }
+]
     },
     {
         "title": "Essential Techniques for Sketching the Energy of Places",
@@ -85,8 +85,8 @@ const courses = [
         "number": 7,
         "title": "Hitting the Streets: On Location (19:03)",
         "link": "https://www.craftsy.com/class/essential-techniques-for-sketching-the-energy-of-places"
-    },
-],
+    }
+]
     },
     {
         "title": "Sketching the City in Pen, Ink & Watercolor",
@@ -134,8 +134,8 @@ const courses = [
         "number": 8,
         "title": "Panoramic Cityscapes (26:30)",
         "link": "https://www.craftsy.com/class/sketching-the-city-in-pen-ink-watercolor"
-    },
-],
+    }
+]
     },
     {
         "title": "Perspective for Sketchers",
@@ -183,8 +183,8 @@ const courses = [
         "number": 8,
         "title": "Location Sketching: Streetscape (14:08)",
         "link": "https://www.craftsy.com/class/perspective-for-sketchers"
-    },
-],
+    }
+]
     },
     {
         "title": "Travel Sketching in Mixed Media",
@@ -232,8 +232,8 @@ const courses = [
         "number": 8,
         "title": "Working in Layers (16:26)",
         "link": "https://www.craftsy.com/class/travel-sketching-in-mixed-media"
-    },
-],
+    }
+]
     },
     {
         "title": "Sketching Landscapes in Pen, Ink & Watercolor",
@@ -281,8 +281,8 @@ const courses = [
         "number": 8,
         "title": "Expressing Unique Moments (21:39)",
         "link": "https://www.craftsy.com/class/sketching-landscapes-in-pen-ink-watercolor"
-    },
-],
+    }
+]
     },
     {
         "title": "Sketching People in Motion",
@@ -330,8 +330,8 @@ const courses = [
         "number": 8,
         "title": "Capturing Multiple People (15:12)",
         "link": "https://www.craftsy.com/class/sketching-people-in-motion"
-    },
-],
+    }
+]
     } 
 ];
 
