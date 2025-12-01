@@ -7,7 +7,6 @@ const courses = [
         "status": "Not Started",
         "link": "https://www.craftsy.com/class/the-essentials-of-sketching-architecture",
 	"lessons": [
-    {
 {	
 	"number": 1,
                 "title": "Class Preview (1:28)",
