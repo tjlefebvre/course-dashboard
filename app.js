@@ -13,7 +13,6 @@ const courses = [
                 "title": "Class Preview (1:28)",
                 "link": "https://www.craftsy.com/class/the-essentials-of-sketching-architecture",
                 "video": "https://manifest.prod.boltdns.net/manifest/v1/hls/v4/clear/6168786647001/9e7a3403-ea28-425f-9739-8c2d8ab228cf/10s/master.m3u8?fastly_token=NjkyZWVlYTBfMTA2NjMwM2E5YmFhNWUyNGMwZTYyZjg5NTg2YmEwZjkyYzA4OGI4NGRjYzExZGMwNDZiYzM1YzRjMDUzODFkYg%3D%3D"
-            },
     },
     {
         "number": 2,
