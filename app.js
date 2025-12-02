@@ -399,7 +399,7 @@ function displayCourses(courseList) {
             </div>
         `;
         container.innerHTML += card;
-    });
+    };
 }
 
 // 3. The Listener (Search Logic)
