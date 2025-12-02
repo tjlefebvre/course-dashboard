@@ -7,43 +7,20 @@ const courses = [
         "status": "Not Started",
         "link": "https://www.craftsy.com/class/the-essentials-of-sketching-architecture",
 	"lessons": [
-{	
-	"number": 1,
-                "title": "Class Preview (1:28)",
-                "link": "https://www.craftsy.com/class/the-essentials-of-sketching-architecture",
-                "video": "https://manifest.prod.boltdns.net/manifest/v1/hls/v4/clear/6168786647001/9e7a3403-ea28-425f-9739-8c2d8ab228cf/10s/master.m3u8?fastly_token=NjkyZWVlYTBfMTA2NjMwM2E5YmFhNWUyNGMwZTYyZjg5NTg2YmEwZjkyYzA4OGI4NGRjYzExZGMwNDZiYzM1YzRjMDUzODFkYg%3D%3D"
-    },
-    {
-        "number": 2,
-        "title": "How We See Buildings (21:37)",
-        "link": "https://www.craftsy.com/class/the-essentials-of-sketching-architecture#description"
-    },
-    {
-        "number": 3,
-        "title": "Architectural Elements (25:37)",
-        "link": "https://www.craftsy.com/class/the-essentials-of-sketching-architecture#description"
-    },
-    {
-        "number": 4,
-        "title": "Building Materials (28:21)",
-        "link": "https://www.craftsy.com/class/the-essentials-of-sketching-architecture#description"
-    },
-    {
-        "number": 5,
-        "title": "Sloping Surfaces (19:28)",
-        "link": "https://www.craftsy.com/class/the-essentials-of-sketching-architecture#description"
-    },
-    {
-        "number": 6,
-        "title": "Tips & Techniques (18:13)",
-        "link": "https://www.craftsy.com/class/the-essentials-of-sketching-architecture#description"
-    },
-    {
-        "number": 7,
-        "title": "Sketching Buildings on Location (22:27)",
-        "link": "https://www.craftsy.com/class/the-essentials-of-sketching-architecture#description"
-    }
-]
+            {
+                number: 1,
+                title: "How We See Buildings",
+                // We use a special flag 'type: embed' to tell our engine this isn't a direct link
+                video: "6172643434001", 
+                type: "embed"
+            },
+            {
+                number: 2,
+                title: "Architectural Elements",
+                video: "6172644691001",
+                type: "embed"
+            }
+        ]
     },
     {
         "title": "Essential Techniques for Sketching the Energy of Places",
@@ -354,20 +331,39 @@ function displayCourses(courseList) {
         if (course.lessons && course.lessons.length > 0) {
             lessonsHtml = '<ul style="list-style: none; padding: 0; margin: 0;">';
 		course.lessons.forEach(lesson => {
-                let content = '';
+                let content = ''; // Initialize empty container
                 
-                // If we have a direct video stream, embed a player
+                // LOGIC: Check which type of video we have
                 if (lesson.video) {
-                    content = `
-                        <div style="margin-top: 5px;">
-                            <video controls style="width: 100%; border-radius: 4px; background: #000;">
-                                <source src="${lesson.video}" type="application/x-mpegURL">
-                                Your browser does not support the video tag.
-                            </video>
-                        </div>
-                    `;
+                    if (lesson.type === 'embed') {
+                        // OPTION A: The Permanent ID Player (Brightcove)
+                        // Uses Account ID: 6168786647001 and Player ID: nVoItsu0BQ
+                        content = `
+                            <div style="position: relative; display: block; max-width: 100%;">
+                                <div style="padding-top: 56.25%;">
+                                    <iframe src="//players.brightcove.net/6168786647001/nVoItsu0BQ_default/index.html?videoId=${lesson.video}" 
+                                        allowfullscreen 
+                                        webkitallowfullscreen 
+                                        mozallowfullscreen 
+                                        style="position: absolute; top: 0px; right: 0px; bottom: 0px; left: 0px; width: 100%; height: 100%; border: none;">
+                                    </iframe>
+                                </div>
+                            </div>
+                        `;
+                    } else {
+                        // OPTION B: The Direct Stream (Old Method)
+                        content = `
+                            <div style="margin-top:5px;">
+                                <video controls style="width:100%; border-radius: 4px; background: #000;">
+                                    <source src="${lesson.video}" type="application/x-mpegURL">
+                                    Your browser does not support the video tag.
+                                </video>
+                            </div>
+                        `;
+                    }
                 }
                 
+                // Build the List Item
                 lessonsHtml += `
                     <li style="padding: 12px 10px; border-bottom: 1px solid #333; font-size: 0.9em;">
                         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: ${lesson.video ? '10px' : '0'};">
@@ -379,9 +375,6 @@ function displayCourses(courseList) {
                     </li>
                 `;
             });
-            lessonsHtml += '</ul>';
-        }
-
         const card = `
             <div class="course-card" style="display: block;">
                 <div style="display: flex; justify-content: space-between; align-items: center;">
