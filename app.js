@@ -403,7 +403,7 @@ function displayCourses(courseList) {
 }
 
 // 3. The Listener (Search Logic)
-searchInput.addEventListener('keyup', (e) => {
+searchInput.addEventListener('keyup', (e)) => {
     const searchString = e.target.value.toLowerCase();
     
     const filteredCourses = courses.filter(course => {
@@ -412,7 +412,7 @@ searchInput.addEventListener('keyup', (e) => {
     });
     
     displayCourses(filteredCourses);
-});
+};
 
 // Start the engine
 displayCourses(courses);
