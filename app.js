@@ -136,6 +136,28 @@ function displayCourses(courseList) {
         const detailsId = `details-${index}`;
         const instructor = course.instructor ? course.instructor : "";
         
+        // Status Badge Logic
+        let statusColor = '#666'; // Default/Not Started
+        if (course.status === 'In Progress') statusColor = '#e67e22'; // Orange
+        if (course.status === 'Done') statusColor = '#27ae60'; // Green
+        
+        const statusBadge = `
+            <span style="
+                display: inline-block; 
+                padding: 4px 8px; 
+                border-radius: 4px; 
+                font-size: 0.7rem; 
+                text-transform: uppercase; 
+                font-weight: bold; 
+                background: ${statusColor}33; 
+                color: ${statusColor}; 
+                border: 1px solid ${statusColor};
+                margin-left: 10px;
+            ">
+                ${course.status}
+            </span>
+        `;
+
         // Generate HTML for lessons (if they exist)
         let lessonsHtml = '<p style="padding: 10px; color: #666;">No lesson details added yet.</p>';
         
@@ -144,27 +166,42 @@ function displayCourses(courseList) {
             course.lessons.forEach(lesson => {
                 let content = ''; // Initialize empty container
                 
-                // LOGIC: Check which type of video we have
+                // LOGIC: Flexible Video Embedder
                 if (lesson.video) {
-                    if (lesson.type === 'embed') {
-                        // OPTION A: The Permanent ID Player (Brightcove)
-                        // Uses Account ID: 6168786647001 and Player ID: nVoItsu0BQ
+                    // Check if it's a full URL (starts with http or //) -> Generic Embed (YouTube, Vimeo/Domestika)
+                    if (lesson.video.startsWith('http') || lesson.video.startsWith('//')) {
+                         content = `
+                            <div style="position: relative; display: block; max-width: 100%; margin-top: 10px;">
+                                <div style="padding-top: 56.25%;">
+                                    <iframe src="${lesson.video}" 
+                                        frameborder="0" 
+                                        allow="autoplay; fullscreen; picture-in-picture" 
+                                        allowfullscreen
+                                        style="position: absolute; top: 0px; right: 0px; bottom: 0px; left: 0px; width: 100%; height: 100%; border-radius: 4px;">
+                                    </iframe>
+                                </div>
+                            </div>
+                        `;
+                    }
+                    // Fallback to specific Craftsy/Brightcove ID logic if it looks like an ID (numbers only)
+                    else if (/^\d+$/.test(lesson.video)) {
                         content = `
-                            <div style="position: relative; display: block; max-width: 100%;">
+                            <div style="position: relative; display: block; max-width: 100%; margin-top: 10px;">
                                 <div style="padding-top: 56.25%;">
                                     <iframe src="//players.brightcove.net/6168786647001/nVoItsu0BQ_default/index.html?videoId=${lesson.video}" 
                                         allowfullscreen 
                                         webkitallowfullscreen 
                                         mozallowfullscreen 
-                                        style="position: absolute; top: 0px; right: 0px; bottom: 0px; left: 0px; width: 100%; height: 100%; border: none;">
+                                        style="position: absolute; top: 0px; right: 0px; bottom: 0px; left: 0px; width: 100%; height: 100%; border: none; border-radius: 4px;">
                                     </iframe>
                                 </div>
                             </div>
                         `;
-                    } else {
-                        // OPTION B: The Direct Stream (Old Method)
+                    } 
+                    // Fallback for local/direct video files
+                    else {
                         content = `
-                            <div style="margin-top:5px;">
+                            <div style="margin-top:10px;">
                                 <video controls style="width:100%; border-radius: 4px; background: #000;">
                                     <source src="${lesson.video}" type="application/x-mpegURL">
                                     Your browser does not support the video tag.
@@ -177,9 +214,10 @@ function displayCourses(courseList) {
                 // Build the List Item
                 lessonsHtml += `
                     <li style="padding: 12px 10px; border-bottom: 1px solid #333; font-size: 0.9em;">
-                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: ${lesson.video ? '10px' : '0'};">
-                            <a href="${lesson.link}" target="_blank" style="color: #aaa; text-decoration: none;">
-                                <span>${lesson.number}. ${lesson.title}</span>
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <a href="${lesson.link}" target="_blank" style="color: #aaa; text-decoration: none; display: flex; align-items: center; width: 100%;">
+                                <span style="margin-right: 8px; color: #555;">${lesson.number}.</span>
+                                <span style="flex-grow: 1;">${lesson.title}</span>
                             </a>
                         </div>
                         ${content}
@@ -194,7 +232,10 @@ function displayCourses(courseList) {
             <div class="course-card" style="display: block;">
                 <div style="display: flex; justify-content: space-between; align-items: center;">
                     <div class="course-info">
-                        <h3>${course.title}</h3>
+                        <div style="display: flex; align-items: center; margin-bottom: 5px;">
+                             <h3 style="margin: 0;">${course.title}</h3>
+                             ${statusBadge}
+                        </div>
                         <p style="color: #bbb; font-size: 0.9em; margin-bottom: 5px;">${instructor}</p>
                         <span class="platform-tag">${course.platform}</span>
                     </div>
